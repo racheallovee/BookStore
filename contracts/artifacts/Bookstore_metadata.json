@@ -221,6 +221,11 @@
 						"internalType": "uint256",
 						"name": "_bookId",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_quantity",
+						"type": "uint256"
 					}
 				],
 				"name": "purchaseBook",
@@ -308,11 +313,11 @@
 	},
 	"sources": {
 		"contracts/BookStore.sol": {
-			"keccak256": "0xbaada23c9553393990dcb0095689bfc95429f21e14a7f910b3810477335b497e",
+			"keccak256": "0x575c580c2ec549bbbd43684c1eef8277aebb228ee8c51c18f30fa6dbedfaae72",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a52cf2e481380179112ebcd12c60fd0a1151683c8bc28fdb1e39ecd476431e0e",
-				"dweb:/ipfs/QmebKNKmPRJRHxB9VnGc7AgLwqBBWcPqjEVwp5PYgWpoTy"
+				"bzz-raw://ab1dbcc73cfca64c3a9ebc845198fc92c142afe4663b219a61c1366fdcfd24f7",
+				"dweb:/ipfs/QmeAiFtNyEFgVtJPQieiehGR42rBG6dRiCdZdWDJtf9Zuw"
 			]
 		}
 	},

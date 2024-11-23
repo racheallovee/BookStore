@@ -36,7 +36,7 @@ contract Bookstore {
         require(_stock > 0, "Stock should be greater than zero");
         require(books[_bookId].bookId == 0, "Book ID already exists");
 
-        books[_bookId] = Book(_bookId, _title, _author, _price, _stock, true);
+        books[_bookId] = Book(_bookId, _title, _author, _price*1 ether, _stock, true);
         bookCount++;
     }
 
@@ -54,8 +54,14 @@ contract Bookstore {
         require(_bookId > 0 && _bookId <= bookCount, "Invalid book ID");
         Book storage book = books[_bookId];
         require(book.isAvailable, "Book is not available");
-        require(book.stock > 0, "Book out of stock");
-        require(msg.value == book.price, "Incorrect payment amount");
+        require(book.stock > _quantity, "Book out of stock");
+
+        // define the total price 
+        uint256 totalprice = book.price * _quantity;
+
+        require(msg.value == totalprice, "Incorrect payment amount");
+        require(msg.value <=totalprice, "Overpaid book purchase");
+
 
         book.stock--; // logic operators 
         totalBooksSold++; 

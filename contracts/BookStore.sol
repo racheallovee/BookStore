@@ -50,20 +50,17 @@ contract Bookstore {
     }
 
     // Function to purchase a book
-    function purchaseBook(uint256 _bookId, uint256 _quantity ) public payable {
+    function purchaseBook(uint256 _bookId ,uint256 _quantity) public payable {
         require(_bookId > 0 && _bookId <= bookCount, "Invalid book ID");
         Book storage book = books[_bookId];
         require(book.isAvailable, "Book is not available");
         require(book.stock > _quantity, "Book out of stock");
 
-        // define the total price 
-        uint256 totalprice = book.price * _quantity;
-
+        uint256 totalprice =book.price*_quantity;
         require(msg.value == totalprice, "Incorrect payment amount");
-        require(msg.value <=totalprice, "Overpaid book purchase");
+        require(msg.value<=totalprice, "Overpaid book purchase");
 
-
-        book.stock--; // logic operators 
+        book.stock--;
         totalBooksSold++; 
 
         // Transfer payment to the owner

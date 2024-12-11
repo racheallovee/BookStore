@@ -1,0 +1,65 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_account",
+						"type": "address"
+					}
+				],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/AddressesAndBalances.sol": "myAddresses"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/AddressesAndBalances.sol": {
+			"keccak256": "0x100a575937451f06ba49c5b8c02b675ed6822d7fabb88da62407db7632249618",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://09bf75110264b2ce37bb7efada41973c066f228a2d023224c4e0f6580fd1229b",
+				"dweb:/ipfs/QmUt5CeK8D7w7F4cHqyVm9dXSPVWumKdoNxZcE4s4Qxn94"
+			]
+		}
+	},
+	"version": 1
+}

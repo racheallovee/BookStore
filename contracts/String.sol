@@ -11,4 +11,8 @@
     function getMessage() public view returns(string memory){
         return message;
     }
+
+    function getMessageLength() public view returns(uint){
+        return bytes(message).length;
+    }
  }

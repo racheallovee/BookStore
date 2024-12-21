@@ -12,9 +12,8 @@ address c;
 
 modifier onlyOwner() {
     require(msg.sender == owner, "Youre NOT the owner");
-
-    _;
-
+_;
+// count++;
 }
 
 

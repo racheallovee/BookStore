@@ -37,6 +37,19 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "removeNum",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -67,11 +80,11 @@
 	},
 	"sources": {
 		"contracts/View&PureFunctions.sol": {
-			"keccak256": "0xe232ba5bf79372eca5d51c8e9c104ac586029e08d097d91d4860739704257ce1",
+			"keccak256": "0xa2e9ebbca7c5a3c55dd19a8b7824cff4cf480d76d1c3bfe010006c32b5f88fb7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cf4f3b07bcf34e04e5d1782885fa59c69889bdee5bc72649b33062eacd24fc07",
-				"dweb:/ipfs/QmfF7HiWaPd19gDbefPxW2oL6DTokUb3EFLGcVyiuzW35Y"
+				"bzz-raw://d701fa999e60cc8ebe9e58c474f4646e95d9b4e6cacb33b8f343e7b51ed729ef",
+				"dweb:/ipfs/QmaHR2NDRqp2M9SFn86RpqcCuTdoPPFxgvHy4y4CUUaUdD"
 			]
 		}
 	},

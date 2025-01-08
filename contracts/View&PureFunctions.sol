@@ -17,4 +17,8 @@ contract viewPure{
         return(1+2);
     }
 
+    function removeNum() public pure returns (uint){
+        return (4-2);
+    }
+
 }

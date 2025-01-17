@@ -25,6 +25,12 @@
 						"internalType": "bool",
 						"name": "isGranted",
 						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "reward",
+						"type": "uint256"
 					}
 				],
 				"name": "AccessUpdated",
@@ -44,10 +50,55 @@
 						"internalType": "uint256",
 						"name": "timestamp",
 						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "reward",
+						"type": "uint256"
 					}
 				],
 				"name": "DataLogged",
 				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "TokensClaimed",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "TOKEN_REWARD",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "claimTokens",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
 				"inputs": [
@@ -75,6 +126,25 @@
 				"name": "logHealthData",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "tokenBalances",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -155,7 +225,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/PatientDataManagement.sol": "PatientDataManagement"
+			"contracts/PatientDataRevised.sol": "PatientDataManagement"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -169,12 +239,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/PatientDataManagement.sol": {
-			"keccak256": "0x740ad8dad0d739360ad112040c2e906143488de57d6aed88fdd26d79a1c222a8",
+		"contracts/PatientDataRevised.sol": {
+			"keccak256": "0xede03b47154f8fbc621dd337f94c54a42bcf8cd663bc5dfcc1e42a58b8bfbeae",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://98c19f1532e3152b317c55fe0cec18b309aede806b2d34ad3e2c243d6dbf7326",
-				"dweb:/ipfs/QmZPG6xevY5Wk2U618Vry4Jp4RFKuUFhyCxYbKuJnfciWR"
+				"bzz-raw://cbd1163b532005c373cc53c80fb97db90a42cd5f16139ed9394f96a805fd54f1",
+				"dweb:/ipfs/QmS5MRkRLBpZaQijGrNU6H8E9eUDZME89LXqGVi1hk5bDU"
 			]
 		}
 	},

@@ -1,9 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+
 contract PatientDataManagement {
+    using SafeERC20 for IERC20;
+
+    // Token interface
+    IERC20 public rewardToken;
+
     // Token rewards per action
-    uint256 public constant TOKEN_REWARD = 10;
+    uint256 public constant TOKEN_REWARD = 10 * (10 ** 18); // Assuming token has 18 decimals
 
     // Mapping to store patient health data
     struct HealthData {
@@ -13,9 +21,6 @@ contract PatientDataManagement {
         string meals;
         string exercise;
     }
-
-    // ERC20-like token balance mapping
-    mapping(address => uint256) public tokenBalances;
 
     // Mapping to store health data for each patient (address)
     mapping(address => HealthData[]) private patientData;
@@ -31,6 +36,12 @@ contract PatientDataManagement {
 
     // Event emitted when tokens are claimed
     event TokensClaimed(address indexed user, uint256 amount);
+
+    // Constructor to initialize the reward token
+    constructor(address _rewardToken) {
+        require(_rewardToken != address(0), "Invalid token address");
+        rewardToken = IERC20(_rewardToken);
+    }
 
     // Function for patients to log their health data
     function logHealthData(
@@ -49,7 +60,7 @@ contract PatientDataManagement {
         patientData[msg.sender].push(newData);
 
         // Reward the patient with tokens
-        tokenBalances[msg.sender] += TOKEN_REWARD;
+        rewardToken.safeTransfer(msg.sender, TOKEN_REWARD);
 
         emit DataLogged(msg.sender, block.timestamp, TOKEN_REWARD);
     }
@@ -59,7 +70,7 @@ contract PatientDataManagement {
         accessPermissions[msg.sender][_accessor] = _isGranted;
 
         // Reward the patient with tokens for managing permissions
-        tokenBalances[msg.sender] += TOKEN_REWARD;
+        rewardToken.safeTransfer(msg.sender, TOKEN_REWARD);
 
         emit AccessUpdated(msg.sender, _accessor, _isGranted, TOKEN_REWARD);
     }
@@ -73,14 +84,17 @@ contract PatientDataManagement {
         return patientData[_patient];
     }
 
-    // Function to claim tokens
-    function claimTokens() public {
-        uint256 amount = tokenBalances[msg.sender];
-        require(amount > 0, "No tokens to claim");
+    // Function to claim tokens (if reward system requires accumulation)
+    function claimTokens(uint256 amount) public {
+        require(amount > 0, "Amount must be greater than zero");
+        require(rewardToken.balanceOf(address(this)) >= amount, "Insufficient contract balance");
 
-        tokenBalances[msg.sender] = 0;
-        // Logic to transfer tokens can be added here
-
+        rewardToken.safeTransfer(msg.sender, amount);
         emit TokensClaimed(msg.sender, amount);
+    }
+
+    // Additional feature: Check token balance of the contract
+    function contractTokenBalance() public view returns (uint256) {
+        return rewardToken.balanceOf(address(this));
     }
 }

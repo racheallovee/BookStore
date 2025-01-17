@@ -1,0 +1,182 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "patient",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "accessor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isGranted",
+						"type": "bool"
+					}
+				],
+				"name": "AccessUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "patient",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "DataLogged",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_glucoseLevel",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_medication",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_meals",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_exercise",
+						"type": "string"
+					}
+				],
+				"name": "logHealthData",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_accessor",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "_isGranted",
+						"type": "bool"
+					}
+				],
+				"name": "updateAccess",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_patient",
+						"type": "address"
+					}
+				],
+				"name": "viewHealthData",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "glucoseLevel",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "medication",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "meals",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "exercise",
+								"type": "string"
+							}
+						],
+						"internalType": "struct PatientDataManagement.HealthData[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/PatientDataManagement.sol": "PatientDataManagement"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/PatientDataManagement.sol": {
+			"keccak256": "0x740ad8dad0d739360ad112040c2e906143488de57d6aed88fdd26d79a1c222a8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://98c19f1532e3152b317c55fe0cec18b309aede806b2d34ad3e2c243d6dbf7326",
+				"dweb:/ipfs/QmZPG6xevY5Wk2U618Vry4Jp4RFKuUFhyCxYbKuJnfciWR"
+			]
+		}
+	},
+	"version": 1
+}

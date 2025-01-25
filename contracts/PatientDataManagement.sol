@@ -7,17 +7,23 @@ contract PatientDataManagement {
         uint256 timestamp;
         uint256 glucoseLevel;
         string medication;
-        string meals;
+        string meals;   
         string exercise;
     }
 
-    mapping(address => HealthData[]) private patientData;
+mapping(address => HealthData[]) private patientData;
+mapping(address => mapping(address => bool)) private accessPermissions;
+RewardToken private rewardToken;
+uint256 private rewardAmount = 10 * 10**18; 
 
-    mapping(address => mapping(address => bool)) private accessPermissions;
+ event DataLogged(address indexed patient, uint256 timestamp);
+ event AccessUpdated(address indexed patient, address indexed accessor, bool isGranted);
+  event RewardIssued(address indexed patient, uint256 amount);
 
-    event DataLogged(address indexed patient, uint256 timestamp);
+   constructor(address _rewardTokenAddress) {
+        rewardToken = RewardToken(_rewardTokenAddress);
+    }
 
-    event AccessUpdated(address indexed patient, address indexed accessor, bool isGranted);
 
     function logHealthData(
         uint256 _glucoseLevel,
@@ -33,6 +39,9 @@ contract PatientDataManagement {
             exercise: _exercise
         });
         patientData[msg.sender].push(newData);
+         // Reward the patient
+        rewardToken.transfer(msg.sender, rewardAmount);
+        emit RewardIssued(msg.sender, rewardAmount);
         emit DataLogged(msg.sender, block.timestamp);
     }
 

@@ -6,6 +6,22 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_rewardTokenAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_initialRewardAmount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -44,10 +60,127 @@
 						"internalType": "uint256",
 						"name": "timestamp",
 						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "glucoseLevel",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "medicationHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "mealsHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "exerciseHash",
+						"type": "bytes32"
 					}
 				],
 				"name": "DataLogged",
 				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "accessor",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isGranted",
+						"type": "bool"
+					}
+				],
+				"name": "EmergencyAccessUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "patient",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "RewardIssued",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_index",
+						"type": "uint256"
+					}
+				],
+				"name": "deleteHealthData",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_patient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_endTime",
+						"type": "uint256"
+					}
+				],
+				"name": "getAverageGlucoseLevel",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_accessor",
+						"type": "address"
+					}
+				],
+				"name": "grantEmergencyAccess",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			},
 			{
 				"inputs": [
@@ -57,22 +190,48 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "string",
-						"name": "_medication",
-						"type": "string"
+						"internalType": "bytes32",
+						"name": "_medicationHash",
+						"type": "bytes32"
 					},
 					{
-						"internalType": "string",
-						"name": "_meals",
-						"type": "string"
+						"internalType": "bytes32",
+						"name": "_mealsHash",
+						"type": "bytes32"
 					},
 					{
-						"internalType": "string",
-						"name": "_exercise",
-						"type": "string"
+						"internalType": "bytes32",
+						"name": "_exerciseHash",
+						"type": "bytes32"
 					}
 				],
 				"name": "logHealthData",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_accessor",
+						"type": "address"
+					}
+				],
+				"name": "revokeEmergencyAccess",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newRewardAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "setRewardAmount",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -118,19 +277,19 @@
 								"type": "uint256"
 							},
 							{
-								"internalType": "string",
-								"name": "medication",
-								"type": "string"
+								"internalType": "bytes32",
+								"name": "medicationHash",
+								"type": "bytes32"
 							},
 							{
-								"internalType": "string",
-								"name": "meals",
-								"type": "string"
+								"internalType": "bytes32",
+								"name": "mealsHash",
+								"type": "bytes32"
 							},
 							{
-								"internalType": "string",
-								"name": "exercise",
-								"type": "string"
+								"internalType": "bytes32",
+								"name": "exerciseHash",
+								"type": "bytes32"
 							}
 						],
 						"internalType": "struct PatientDataManagement.HealthData[]",
@@ -210,11 +369,11 @@
 			]
 		},
 		"contracts/PatientDataManagement.sol": {
-			"keccak256": "0x0b86f5af56cd8ae8cff7f1215b2b499d4984bad08e7b7ca97f81ac15ba5fdab0",
+			"keccak256": "0xc07d9262061f2f9985db6e116b5604e079bc186170e3676efe10141ebc1193fd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://caffc513f676cf40115bc846cb34d6b89667a35af6605a23cf853b0b2bde8199",
-				"dweb:/ipfs/QmbyxyjkWemqG4WhpgAyHRfomR4WntjSmir4hcyZPg49is"
+				"bzz-raw://f59449210dc9b8c6146ff1d7d76c5be82e232ba0ba4583f8b30880009e548f42",
+				"dweb:/ipfs/Qmeb4BMfSRDS2LswAAPoeJowWqTzBqhPnjCEh15cGk3SuK"
 			]
 		},
 		"contracts/RewardToken.sol": {
